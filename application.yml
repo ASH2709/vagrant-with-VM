@@ -1,0 +1,20 @@
+- hosts : webservers
+  become: yes
+
+  tasks:  
+    - name : Install the Apche web server
+      yum  : name=httpd state=present
+
+    - name: Ensure the Apache is started adn enable on system boot
+      service: name=httpd state=started enabled=yes 
+
+- hosts : dbservers
+  become: yes
+
+  tasks:  
+    - name : Install MYSQL
+      yum  : name=mariadb-server state=present
+
+    - name: Ensure the MYSQL is started adn enable on system boot
+      service: name=mariadb state=started enabled=yes 
+  
